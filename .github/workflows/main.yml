@@ -1,0 +1,36 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Install wget
+        run: |
+          apt-get update
+          apt-get install wget -y
+
+      - name: Install python requirements
+        run: pip install -r requirements.txt
+
+      - name: Download
+        run: wget https://dumps.wikimedia.org/zhwiki/latest/zhwiki-latest-pages-articles.xml.bz2
+        
+      - name: Format
+        run: python format2.py
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: data
+          path: wiki.txt
