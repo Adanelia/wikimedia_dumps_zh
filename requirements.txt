@@ -1,0 +1,4 @@
+bz2file
+gensim
+tqdm
+opencc-python-reimplemented==0.1.4
