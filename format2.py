@@ -40,6 +40,6 @@ for d in w:
         f.write(s+'\n\n\n') 
         i += 1 
         if i % 100 == 0: 
-        w.set_description(u'已获取%s篇文章'%i) 
+            w.set_description(u'已获取%s篇文章'%i) 
 
 f.close()
