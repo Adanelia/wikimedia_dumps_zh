@@ -26,6 +26,12 @@ jobs:
       - name: Download
         run: wget https://dumps.wikimedia.org/zhwiki/latest/zhwiki-latest-pages-articles.xml.bz2
         
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: origin_xml
+          path: zhwiki-latest-pages-articles.xml.bz2
+        
       - name: Format
         run: python format2.py
         
